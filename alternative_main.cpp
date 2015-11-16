@@ -91,16 +91,6 @@ public:
 		}
 		return false;
 	}
-	T middle()
-	{
-		T sum = 0;
-		int count = 0;
-		for (int i = 0; i < size; i++)
-		{
-			sum += array[i];
-		}
-		return sum /2;
-	}
 	void print()
 	{
 		cout << "Size = " << this->size << endl;
@@ -148,17 +138,6 @@ int main()
 		cout << "First Set >= Second Set" << endl;
 		cout << "-----" << endl;
 	}
-	/*
-	
-	Set<float > middleFirst(3);
-	middleFirst.input();
-	Set<float> middleSecond(3);
-	middleSecond.input();
-	Set<float> sum_sr;
-	sum_sr = middleFirst + middleSecond;
-	sum_sr.print();
-	cout << "Average value: " << sum_sr << endl;
-	cout << "-------" << endl;*/
 	
 	system("pause");
 }
