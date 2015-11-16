@@ -31,7 +31,7 @@ public:
 	{
 		for (int i = 0; i < size; i++)
 		{
-			(T)array[i] = ((T)(RAND_MAX)) / 100 + ((T)(rand() % 31 - 25));
+			(T)array[i] = ((T)(RAND_MAX)) / 1000 + ((T)(rand() % 30));
 		}
 	}
 	friend Set operator +(Set& a1, Set& a2)
@@ -60,11 +60,53 @@ public:
 		return newSet;
 
 	}
+	operator int() const
+	{
+		return this->size;
+	}
+	T operator[](int x)
+	{
+		return array[x];
+	}
+	friend bool operator <=(const Set &r, const Set &l)
+	{
+		if (r.size < l.size)
+		{
+			cout << " < " << endl;
+			return true;
+		}
+		if (r.size == l.size)
+		{
+			for (int i = 0; i < r.size; i++)
+			{
+				if (r.array[i] != l.array[i])
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	T middle()
+	{
+		T sum = 0;
+		int count = 0;
+		for (int i = 0; i < size; i++)
+		{
+			sum += array[i];
+		}
+		return sum /2;
+	}
 	void print()
 	{
 		cout << "Size = " << this->size << endl;
 		for (int i = 0; i < size; i++)
 		{
+			cout << "Result:" << "  ";
 			cout << array[i] << " ";
 		}
 		cout << endl;
@@ -74,7 +116,7 @@ public:
 int main()
 {
 	srand(time(NULL));
-	Set<int> firstSet(3);
+	Set<int> firstSet(2);
 	firstSet.input();
 	Set<int > secondSet(3);
 	secondSet.input();
@@ -83,5 +125,40 @@ int main()
 	firstSet.print();
 	secondSet.print();
 	sum.print();
+	cout << "-------" << endl;
+	cout << "----First Set----" << endl;
+	cout << "First : " << firstSet[0] << endl;
+	cout << "Second : " << firstSet[1] << endl;
+	cout << "Third : " << firstSet[2] << endl;
+	cout << "-------" << endl;
+	cout << "----Second Set----" << endl;
+	cout << "First : " << secondSet[0] << endl;
+	cout << "Second : " << secondSet[1] << endl;
+	cout << "Third : " << secondSet[2] << endl;
+	cout << "-------" << endl;
+	cout << "Amount of Element : " << (int)firstSet << endl;
+	cout << "-------" << endl;
+	if (firstSet <= secondSet)
+	{
+		cout << "First Set <= Second Set" << endl;
+		cout << "-----" << endl;
+	}
+	else
+	{
+		cout << "First Set >= Second Set" << endl;
+		cout << "-----" << endl;
+	}
+	/*
+	
+	Set<float > middleFirst(3);
+	middleFirst.input();
+	Set<float> middleSecond(3);
+	middleSecond.input();
+	Set<float> sum_sr;
+	sum_sr = middleFirst + middleSecond;
+	sum_sr.print();
+	cout << "Average value: " << sum_sr << endl;
+	cout << "-------" << endl;*/
+	
 	system("pause");
 }
